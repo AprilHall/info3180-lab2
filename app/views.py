@@ -7,6 +7,8 @@ This file creates your application.
 
 from app import app
 from flask import render_template, request, redirect, url_for, flash
+import time
+import datetime
 
 
 ###
@@ -23,7 +25,19 @@ def home():
 def about():
     """Render the website's about page."""
     return render_template('about.html', name="Mary Jane")
-
+    
+##Step 1
+@app.route('/profile/')
+def profile():
+    Datetime = dt()
+    return render_template('profile.html', Date=Datetime) 
+    
+##Step 4 - Date joined----check
+def dt():
+    localtime = time.localtime(time.time())
+    localtime = time.mktime(localtime)
+    Datetime = time.strftime("%b %d %Y", time.gmtime(localtime))
+    return Datetime
 
 ###
 # The functions below should be applicable to all Flask apps.
